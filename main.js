@@ -1,4 +1,6 @@
-
+leftWristX=0;
+rightWristX=0;
+difference=0;
 
 function setup(){
     video=createCapture(VIDEO);
@@ -18,6 +20,18 @@ function modelLoaded(){
 function gotPoses(results){
     if(results.length>0){
         console.log(results);
+        leftWristX=results[0].pose.leftWrist.x;
+        rightWristX=results[0].pose.rightWrist.x;
+        difference=floor(leftWristX - rightWristX);
+        console.log("leftWristX= "+leftWristX+" rightWristX= "+rightWristX+" difference= "+difference);
     }
 }
 
+
+
+function draw(){
+    background('#FFA500');
+    textSize(difference);
+    fill('#A020F0');
+    text('Sutanu',50,400);
+}
